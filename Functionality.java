@@ -20,11 +20,9 @@ public class Functionality extends JFrame{
     private JPanel topPanel;
     private JPanel leftPanel;
     private JPanel rightPanel;
-    private JPanel labelAge;
     private JList displayList;
     private ArrayList<Person> people;
     private DefaultListModel displayListModel;
-
 
 
 // Constructors
@@ -37,17 +35,38 @@ public class Functionality extends JFrame{
         this.people = new ArrayList<Person>();
         this.displayListModel = new DefaultListModel();
         this.displayList.setModel(displayListModel);
+        buttonSave.setEnabled(false);
 
         buttonNew.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                    Person a = new Person(
+                            textName.getText(),
+                            textPhone.getText(),
+                            textEmail.getText(),
+                            textNotes.getText(),
+                            textDOB.getText()
+                    );
+                    people.add(a);
+                    refreshDisplayList();
             }
         });
 
         buttonSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                int personNumber = displayList.getSelectedIndex();
+                if(personNumber>=0) {
+                    Person a = people.get(personNumber);
+                    a.setName(textName.getText());
+                    a.setPhoneNumber(textPhone.getText());
+                    a.setEmail(textEmail.getText());
+                    a.setNote(textNotes.getText());
+                    a.setDateOfBirth(textDOB.getText());
+                    refreshDisplayList();
+                }
 
             }
         });
@@ -58,17 +77,21 @@ public class Functionality extends JFrame{
                 int personNumber = displayList.getSelectedIndex();
                 if(personNumber >=0) {
                     Person a = people.get(personNumber);
-                    displayListModel.addElement(a.getName());
                     textName.setText(a.getName());
                     textPhone.setText(a.getPhoneNumber());
                     textEmail.setText(a.getEmail());
                     textNotes.setText(a.getNote());
                     textDOB.setText(a.getDateOfBirth().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+                    buttonSave.setEnabled(true);
+                } else {
+                    buttonSave.setEnabled(false);
                 }
             }
         });
 
     }
+
+// Refresh display list  by this method
 
     public void refreshDisplayList () {
         displayListModel.removeAllElements();
@@ -81,6 +104,7 @@ public class Functionality extends JFrame{
         }
     }
 
+// add person by this method
     public void addPerson(Person a) {
         people.add(a);
         refreshDisplayList();
