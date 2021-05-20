@@ -32,6 +32,9 @@ public class Functionality extends JFrame{
         this.setContentPane(this.mainPanel);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
+        this.setBounds(100,100,450,500);
+        this.setLocation(700,380);
+        this.setVisible(true);
         this.people = new ArrayList<Person>();
         this.displayListModel = new DefaultListModel();
         this.displayList.setModel(displayListModel);
