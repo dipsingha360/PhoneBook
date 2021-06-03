@@ -2,32 +2,23 @@ package PhoneBook;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeFormatter;
 
 public class Person {
     private String name;
     private String email;
     private String phoneNumber;
     private String note;
-    private LocalDate dateOfBirth;
+//    private LocalDate dateOfBirth;
 
 // Constructors
-    public Person(String name, String email, String phoneNumber, String note, LocalDate dateOfBirth) {
+    public Person(String name, String phoneNumber, String email, String note) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.note = note;
-        this.dateOfBirth = dateOfBirth;
+//        this.dateOfBirth = dateOfBirth;
     }
-
-    public Person(String name, String email, String phoneNumber, String note, String dateOfBirth) {
-        this.name = name;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.note = note;
-        this.setDateOfBirth(dateOfBirth);
-    }
-
 
 // Getters and Setters
     public String getName() {
@@ -62,20 +53,20 @@ public class Person {
         this.note = note;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public void setDateOfBirth(String dateOfBirth) {
-        this.dateOfBirth = LocalDate.parse(dateOfBirth, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-    }
-    public int getAge() {
-        LocalDate today = LocalDate.now();
-        Period period = Period.between(this.dateOfBirth,today);
-        return period.getYears();
-    }
+//    public LocalDate getDateOfBirth() {
+//        return dateOfBirth;
+//    }
+//
+//    public void setDateOfBirth(LocalDate dateOfBirth) {
+//        this.dateOfBirth = dateOfBirth;
+//    }
+//
+//    public void setDateOfBirth(String dateOfBirth) {
+//        this.dateOfBirth = LocalDate.parse(dateOfBirth, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+//    }
+//    public int getAge() {
+//        LocalDate today = LocalDate.now();
+//        Period period = Period.between(this.dateOfBirth,today);
+//        return period.getYears();
+//    }
 }
